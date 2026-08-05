@@ -1,0 +1,123 @@
+{
+  "theme": "Light mode (Data-heavy preference)",
+  "typography": {
+    "fonts": {
+      "headings": "'Cabinet Grotesk', sans-serif",
+      "body": "'IBM Plex Sans', sans-serif",
+      "monospace": "'JetBrains Mono', monospace"
+    },
+    "scale_and_rules": {
+      "H1": "text-4xl sm:text-5xl font-bold tracking-tight text-slate-950",
+      "H2": "text-2xl sm:text-3xl font-semibold tracking-tight text-slate-900",
+      "H3": "text-xl sm:text-2xl font-medium text-slate-900",
+      "H4": "text-lg sm:text-xl font-medium text-slate-800",
+      "Body": "text-sm text-slate-700 leading-relaxed",
+      "Data_Points": "font-mono text-xs text-slate-600 tracking-tight",
+      "Labels": "text-xs font-semibold uppercase tracking-[0.1em] text-slate-500",
+      "rules": [
+        "DO NOT use Inter or Roboto anywhere.",
+        "Headings MUST use tight tracking (tracking-tight or tracking-tighter).",
+        "Overlines/Labels MUST be Uppercase + Tiny + Wide Spacing (tracking-[0.1em]).",
+        "Line height for headings MUST be tight (leading-none or leading-tight).",
+        "Line height for body text MUST be relaxed (leading-relaxed)."
+      ]
+    }
+  },
+  "colors": {
+    "archetype": "ARCHETYPE 4: SWISS & HIGH-CONTRAST (Authority, Clarity, Truth)",
+    "css_variables": {
+      "--background": "0 0% 100%",
+      "--foreground": "240 10% 3.9%",
+      "--card": "0 0% 100%",
+      "--card-foreground": "240 10% 3.9%",
+      "--popover": "0 0% 100%",
+      "--popover-foreground": "240 10% 3.9%",
+      "--primary": "222.2 47.4% 11.2%",
+      "--primary-foreground": "210 40% 98%",
+      "--secondary": "240 4.8% 95.9%",
+      "--secondary-foreground": "240 5.9% 10%",
+      "--muted": "240 4.8% 95.9%",
+      "--muted-foreground": "240 3.8% 46.1%",
+      "--accent": "240 4.8% 95.9%",
+      "--accent-foreground": "240 5.9% 10%",
+      "--destructive": "0 84.2% 60.2%",
+      "--destructive-foreground": "210 40% 98%",
+      "--border": "240 5.9% 90%",
+      "--input": "240 5.9% 90%",
+      "--ring": "240 10% 3.9%",
+      "--radius": "0.25rem",
+      "--no-website-highlight": "45 93% 47%",
+      "--no-website-foreground": "0 0% 0%"
+    },
+    "application_rules": [
+      "The 'No Website' flag is the key business value. It MUST use bg-[#FACC15] (amber-400) with solid black text. Never make it subtle.",
+      "Use pure high-contrast borders for structural layout. Use 1px border-border.",
+      "Limit the use of primary colors to CTAs (Start Extraction, Export to Excel)."
+    ]
+  },
+  "visual_enhancers": {
+    "surfaces": "GRID BORDERS (The Technical Look). Structure layout with pure 1px borders exposing the grid/skeleton.",
+    "corners": "Sharp to extremely subtle rounding. Use rounded-sm (4px) maximum for inputs, buttons, and cards. No pills.",
+    "shadows": "Minimal. Rely on 1px borders for separation. Hover states can use shadow-sm.",
+    "glassmorphism": "Avoid in data-heavy screens. Use Solid Backgrounds to prevent visual refraction of data."
+  },
+  "grids_and_layouts": {
+    "sidebar": "Left sidebar (w-64) with solid border-r. Include branding, navigation (Extractions, Schedules, History, Users), and User profile at bottom.",
+    "header": "Solid background with hard bottom border. Breadcrumb navigation and global actions (e.g., Export to Excel CTA) on the right.",
+    "main_content": "MODE B: High Density Grid. Tight gaps (gap-4 or gap-6).",
+    "kpi_cards": "col-span-1. Flat backgrounds, 1px subtle border.",
+    "data_table": "Takes up full width (col-span-full). Must support horizontal scrolling, sticky header, and pagination.",
+    "filters": "Sidebar or collapsible top panel above the table."
+  },
+  "components": {
+    "buttons": "Square or rounded-sm edges. Explicit hover states (e.g., hover:bg-slate-800 hover:text-white). Focus ring must be high contrast.",
+    "inputs": "Shadcn standard but override radius to rounded-sm. Explicit focus:ring-2 focus:ring-slate-900.",
+    "badges": "Square badges. 'No Website' badge must be high-visibility amber. Other statuses (e.g., Active, Dissolved) use neutral or subtle color scales.",
+    "table": "Compact. Use Shadcn table but reduce cell padding to py-2 px-3 to fit more data. Zebra striping (even:bg-slate-50) is recommended for legibility.",
+    "cards": "Remove shadows. Use flat rectangular cards with border-border."
+  },
+  "motion": {
+    "interactions": "Hover states on all interactive elements (rows, buttons, links).",
+    "transitions": "Use specific properties: transition-colors duration-200, transition-transform duration-200. NO transition-all.",
+    "loaders": "Use minimal spinner or progressive linear loading bar for data dumps."
+  },
+  "images_urls": {
+    "login_background": {
+      "url": "https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG1pbmltYWwlMjBkYXRhJTIwdGV4dHVyZXxlbnwwfHx8fDE3ODUwNTMyMzN8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Minimal white wavy data texture. Use as a subtle background for the JWT Login screen. Overlay with bg-white/80 to ensure form readability."
+    }
+  },
+  "accessibility": {
+    "contrast": "Ensure all text, especially inside the data table, meets minimum 4.5:1 ratio.",
+    "testing": "All interactive elements MUST include data-testid. Example: data-testid='login-submit-btn', data-testid='export-excel-btn', data-testid='no-website-filter-toggle'."
+  },
+  "instructions_to_main_agent": [
+    "This is a React .js project, NOT .tsx. All generated component files must be .js or .jsx.",
+    "Strictly follow the color tokens and typography set in these guidelines. Do NOT revert to Inter or Roboto.",
+    "Implement the 'No Website' flag with maximum visibility. It is the most critical data point for the user.",
+    "Use Lucide-react for all icons. Do not use emojis.",
+    "For the data table, ensure horizontal overflow is handled cleanly (overflow-x-auto) as companies data can be wide.",
+    "Ensure the layout prevents the sidebar from scrolling with the main content (fixed sidebar, scrollable main area).",
+    "Install required fonts (Cabinet Grotesk, IBM Plex Sans, JetBrains Mono) via Google Fonts or Fontsource.",
+    "Ensure Shadcn UI components are installed and customized as per the 'components' rules (e.g., removing default radii and shadows)."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You tend to converge toward generic, 'on distribution' outputs. In frontend design, this creates what users call the 'AI slop' aesthetic. Avoid this: make creative, distinctive frontends that surprise and delight.",
+    "Dark colors look good when used independently without gradients. DO NOT use dark colors as gradients.",
+    "Don't make generic centered layouts, simplistic gradients, and uniform styling.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects with backdrop filters (12-24px blur) only where specified.",
+    "You MUST NOT apply universal transition. Eg: transition: all. This results in breaking transforms. Always add transitions for specific interactive elements like button, input excluding transforms.",
+    "You MUST NOT center align the app container, ie do not add .App { text-align: center; } in the css file. This disrupts the human natural reading flow of text.",
+    "Always use modern button styles like pill-shaped, or sharp button with interaction animations & color relevant to the app style.",
+    "NEVER: use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 etc for icons.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations. Static = dead.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Subtle grain textures, noise overlays, custom cursors, selection states, and loading animations: separates good from extraordinary.",
+    "Main agent relies on these image URLs. Missing categories = main agent will use placeholder text which is FORBIDDEN.",
+    "Prioritize using pre-existing components from src/components/ui when applicable.",
+    "Create new components that match the style and conventions of existing components when needed.",
+    "Examine existing components to understand the project's component patterns before creating new ones.",
+    "Use sonner for toasts. Sonner component are located in /app/frontend/src/components/ui/sonner.js."
+  ]
+}
