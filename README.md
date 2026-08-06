@@ -1,20 +1,19 @@
 <div align="center">
 
-# 🤖 AI-Powered Customer Complaint Management System
+# 🔍 Intelligent Data Extraction Platform
 
-### Intelligent Complaint Intake, AI Extraction & Real-Time Risk Assessment
+### AI-Assisted Business Data Extraction, Scraping & Job Management — Reimagined
 
-An AI-assisted complaint management platform for regulated product/quality workflows — automatically extracts structured complaint data from unstructured text or PDFs, and generates real-time AI risk assessments to support QMS (Quality Management System) triage.
+Automate the extraction of structured business information from websites with an AI-assisted pipeline, background job orchestration, and a modern, responsive dashboard.
 
 [![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-Async-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
-[![LangGraph](https://img.shields.io/badge/LangGraph-Agentic%20Workflows-1C3C3C?style=for-the-badge)](https://langchain-ai.github.io/langgraph/)
-[![Groq](https://img.shields.io/badge/LLM-Llama%203.3%2070B%20(Groq)-F55036?style=for-the-badge)](https://groq.com/)
-[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Async-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110+-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![React](https://img.shields.io/badge/React-18+-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](#-license)
+[![Status](https://img.shields.io/badge/Status-Active%20Development-brightgreen?style=for-the-badge)](#)
 
-[Overview](#-overview) • [Features](#-features) • [Architecture](#-architecture) • [Installation](#-installation) • [API Docs](#-api-documentation) • [Roadmap](#-roadmap)
+[Overview](#-overview) • [Features](#-features) • [Architecture](#-architecture) • [Installation](#-installation) • [API Docs](#-api-documentation) • [Roadmap](#-future-roadmap)
 
 </div>
 
@@ -29,11 +28,12 @@ An AI-assisted complaint management platform for regulated product/quality workf
 - [Installation](#-installation)
 - [Environment Variables](#-environment-variables)
 - [API Documentation](#-api-documentation)
-- [AI Agent Workflows](#-ai-agent-workflows)
+- [Frontend Pages](#-frontend-pages)
+- [Extraction Workflow](#-extraction-workflow)
 - [Security](#-security)
 - [Performance](#-performance)
+- [Future Roadmap](#-future-roadmap)
 - [Screenshots](#-screenshots)
-- [Roadmap](#-roadmap)
 - [Deployment](#-deployment)
 - [Development Guidelines](#-development-guidelines)
 - [License](#-license)
@@ -44,64 +44,75 @@ An AI-assisted complaint management platform for regulated product/quality workf
 
 ## 🎯 Overview
 
-In regulated industries — pharma, consumer products, manufacturing — complaint intake is slow and manual. Someone has to read a complaint letter or PDF, manually key in the product name, batch number, severity, and complaint type, then separately judge how risky the issue is before it reaches a quality reviewer.
+Manually researching and compiling business information from company websites — names, addresses, contact details, registration data, and more — is slow, repetitive, and error-prone. Analysts and operations teams routinely burn hours copy-pasting data from disparate sources into spreadsheets before it's even usable.
 
-**This system automates both steps** with a two-agent AI pipeline built on LangGraph:
-
-1. **Extraction Agent** — parses a raw complaint (PDF upload or pasted text) and returns clean, structured JSON (product, batch number, complaint type, severity, description, received date), which pre-fills the intake form automatically.
-2. **Risk Assessment Agent** — analyzes a logged complaint and returns a risk level (Low → Critical), a written justification, and a list of recommended corrective actions — acting as an AI "copilot" for quality reviewers.
-
-Complaints are persisted to PostgreSQL through an async FastAPI backend and reviewed through a React dashboard.
+**Intelligent Data Extraction Platform** solves this by combining automated web scraping with AI-assisted parsing to turn unstructured website content into clean, structured business records — all through a single dashboard, with authentication, job tracking, scheduling, and export built in.
 
 ### Why this platform exists
 
-- Complaint documents arrive in inconsistent, unstructured formats (free text, scanned letters, PDFs).
-- Manual triage doesn't scale, and risk judgments vary reviewer to reviewer.
-- Quality teams need a fast, consistent, auditable first pass — not a replacement for human review, but a copilot that removes the grunt work.
+- Business information is scattered across websites in inconsistent formats.
+- Manual research doesn't scale across hundreds or thousands of company domains.
+- Teams need an auditable, repeatable pipeline — not a one-off script.
 
 ### Target Users
 
 | User Type | Use Case |
 |---|---|
-| **Quality Assurance / QMS Teams** | Faster complaint triage and consistent risk scoring |
-| **Regulatory Affairs** | Structured, exportable records for audits and reporting |
-| **Customer Support Teams** | Quickly logging and escalating incoming complaints |
-| **Developers** | Extending the LangGraph pipeline with new agent nodes (e.g. CAPA generation) |
+| **Data / Research Analysts** | Bulk company data collection for market research |
+| **Sales & Lead Gen Teams** | Enriching prospect lists with verified business details |
+| **Operations Teams** | Maintaining structured records of vendor/partner companies |
+| **Developers** | Extending or embedding an extraction pipeline into internal tools |
 
 ### Key Benefits
 
-- ⚡ **Faster intake** — paste or upload a complaint, get a pre-filled form back in seconds
-- 🧠 **Consistent risk scoring** — every complaint gets the same structured AI evaluation
-- 🗂️ **Explicit, traceable pipelines** — LangGraph state graphs make each AI step inspectable and extensible
-- 💾 **Durable records** — async Postgres persistence for every logged complaint
+- ⚡ **Faster turnaround** — submit a URL, get structured data back
+- 🧠 **AI-assisted parsing** — reduces manual cleanup of scraped content
+- 📊 **Exportable output** — Excel/JSON ready for downstream use
+- 🔐 **Secure by design** — JWT-protected APIs and scoped user access
+- 🗂️ **Full job visibility** — track extraction jobs from submission to completion
 
 ---
 
 ## ✨ Features
 
-### 📄 AI Document Extraction
-- Upload a complaint PDF or paste raw text
-- LLM agent (Groq `llama-3.3-70b-versatile`) extracts structured fields: product name, batch number, complaint type, severity, description, received date
-- Auto-fills the complaint logging form — no manual data entry
+### 🔐 Authentication
+- JWT-based login and session handling
+- Protected API routes via authentication middleware (`auth.py`)
+- Token-based access control across frontend and backend
 
-### 🚦 AI Risk Assessment Copilot
-- One-click risk scoring on a logged complaint: **Low → Medium → High → Critical**
-- Written justification explaining the reasoning
-- Concrete, numbered recommended corrective actions
+### 📊 Dashboard
+- Centralized view of extraction activity
+- At-a-glance job status and history summaries
+- Quick access to start new extractions
 
-### 🧠 Agentic Workflows with LangGraph
-- Extraction and risk-assessment logic are modeled as explicit `StateGraph` pipelines
-- Each pipeline is traceable and testable node-by-node
-- Designed to be extended with new nodes (root-cause analysis, CAPA generation, escalation routing)
+### 🕸️ Web Scraping
+- Automated website content retrieval via `requests`
+- HTML parsing and content targeting via `BeautifulSoup`
+- Region-aware scraping logic (`regions.py`) for localized extraction rules
 
-### 🗄️ Async Persistence
-- FastAPI + SQLAlchemy (async) + `asyncpg` for non-blocking database access
-- Complaint records stored in PostgreSQL with full field history
+### 🤖 AI Processing
+- AI-assisted structuring of raw scraped content into business fields
+- Reduces manual data cleaning through intelligent parsing
+- *Customize for your implementation — specific AI provider/model configuration depends on deployment*
 
-### 🎨 Modern React Dashboard
-- Redux Toolkit for predictable state management
-- Tailwind CSS for a clean, responsive layout
-- Three-panel single-page dashboard: AI intake, editable complaint form, AI Copilot risk panel
+### 🗃️ Job Management
+- Job lifecycle tracking handled via `jobs.py`
+- Per-job status, metadata, and result tracking
+- Designed for asynchronous, non-blocking extraction runs
+
+### 🕒 Scheduling
+- Dedicated scheduling interface for recurring or planned extraction jobs
+- Frontend scheduling page for configuring future job runs
+
+### 📤 Export
+- Structured export to Excel via `excel_export.py`
+- JSON output for programmatic consumption
+- Clean, tabular formatting suitable for direct business use
+
+### 👥 User Management
+- Dedicated user management interface
+- Administrative visibility into platform users
+- *Customize for your implementation — role/permission granularity depends on deployment*
 
 ---
 
@@ -109,84 +120,59 @@ Complaints are persisted to PostgreSQL through an async FastAPI backend and revi
 
 ```mermaid
 flowchart TD
-    A[🖥️ Frontend<br/>React 19 + Redux Toolkit] -->|REST API calls| B[⚙️ FastAPI Backend<br/>main.py]
-    B --> C[📄 Extraction Agent<br/>workflows/extraction.py]
-    B --> D[🚦 Risk Assessment Agent<br/>workflows/risk.py]
-    C --> E[🧠 Groq LLM<br/>llama-3.3-70b-versatile]
-    D --> E
-    B --> F[🗄️ Async ORM<br/>SQLAlchemy + asyncpg]
-    F --> G[(PostgreSQL)]
+    A[🖥️ Frontend<br/>React + Tailwind CSS] -->|REST API calls| B[⚙️ FastAPI Backend<br/>server.py]
+    B --> C[🔐 Authentication Layer<br/>auth.py / JWT]
+    C --> D[🕸️ Scraper Engine<br/>scraper.py + regions.py]
+    D --> E[🧩 Extraction Pipeline<br/>AI-Assisted Parsing]
+    E --> F[📤 Export Engine<br/>excel_export.py]
+    B --> G[🗂️ Job Manager<br/>jobs.py]
+    B --> H[🏢 Client Interface<br/>ch_client.py]
 
     style A fill:#61DAFB,color:#000
     style B fill:#009688,color:#fff
-    style C fill:#EC4899,color:#fff
-    style D fill:#F59E0B,color:#000
-    style E fill:#F55036,color:#fff
-    style F fill:#3B82F6,color:#fff
-    style G fill:#4169E1,color:#fff
+    style C fill:#F59E0B,color:#000
+    style D fill:#8B5CF6,color:#fff
+    style E fill:#EC4899,color:#fff
+    style F fill:#10B981,color:#fff
+    style G fill:#3B82F6,color:#fff
+    style H fill:#6B7280,color:#fff
 ```
 
-### Request flow
-
-```mermaid
-sequenceDiagram
-    participant U as User
-    participant F as React Dashboard
-    participant A as FastAPI Backend
-    participant L as LangGraph Agent
-    participant G as Groq LLM
-    participant D as PostgreSQL
-
-    U->>F: Upload PDF / paste complaint text
-    F->>A: POST /extract
-    A->>L: Run Extraction StateGraph
-    L->>G: Structured extraction prompt
-    G-->>L: Structured JSON
-    L-->>A: Extracted fields
-    A-->>F: Pre-filled complaint form
-    U->>F: Review & save complaint
-    F->>A: POST /complaints
-    A->>D: Persist complaint record
-    U->>F: Click "Run Risk Assessment"
-    F->>A: POST /risk-assessment
-    A->>L: Run Risk StateGraph
-    L->>G: Risk evaluation prompt
-    G-->>L: Risk level + justification + actions
-    L-->>A: Risk assessment
-    A-->>F: Display in AI Copilot panel
-```
+> **Note:** This diagram reflects the module structure present in the repository. Exact internal data flow between modules should be verified against implementation details.
 
 ---
 
 ## 📁 Project Structure
 
 ```
-AI-Powered-Customer-Complaint-Management-System/
+Intelligent-Data-Extraction-Platform/
+│
 ├── backend/
-│   ├── main.py                  # FastAPI app & route definitions
-│   ├── models.py                # SQLAlchemy ORM models (Complaint)
-│   ├── schemas.py                # Pydantic request/response schemas
-│   ├── requirements.txt
-│   ├── api/                      # Route modules (extraction, risk, copilot)
-│   └── workflows/
-│       ├── extraction.py         # LangGraph extraction agent
-│       └── risk.py               # LangGraph risk-assessment agent
+│   ├── auth.py                # JWT authentication & authorization logic
+│   ├── server.py              # FastAPI application entry point & routing
+│   ├── scraper.py             # Core web scraping engine
+│   ├── excel_export.py        # Excel export utilities
+│   ├── jobs.py                # Job creation, tracking & lifecycle management
+│   ├── ch_client.py           # External/client interface handler
+│   └── regions.py             # Region-specific extraction configuration
 │
 ├── frontend/
-│   ├── package.json
 │   ├── src/
-│   │   ├── App.js                 # Main dashboard layout
-│   │   ├── store.js                # Redux store configuration
-│   │   ├── complaintSlice.js       # Complaint form state
-│   │   ├── aiSlice.js               # AI risk/extraction state
-│   │   └── components/
-│   │       ├── ComplaintIntake.js   # PDF/text upload → AI extraction
-│   │       ├── ComplaintForm.js      # Manual complaint entry & save
-│   │       └── AiCopilotPanel.js      # AI risk assessment panel
-│   └── public/
+│   │   ├── components/        # Reusable UI components
+│   │   ├── pages/
+│   │   │   ├── Login/
+│   │   │   ├── Dashboard/
+│   │   │   ├── History/
+│   │   │   ├── Extraction/
+│   │   │   ├── Users/
+│   │   │   └── Schedules/
+│   │   ├── auth/               # Authentication context & guards
+│   │   └── App.jsx
+│   ├── public/
+│   └── package.json
 │
-├── docs/
-│   └── screenshots/
+├── design_guidelines.json      # UI/UX design tokens & guidelines
+├── .env.example                 # Sample environment configuration
 ├── README.md
 └── LICENSE
 ```
@@ -198,50 +184,52 @@ AI-Powered-Customer-Complaint-Management-System/
 ### Prerequisites
 
 - Python 3.10+
-- Node.js 18+ and npm
-- A PostgreSQL database (local or hosted, e.g. [Neon](https://neon.tech))
-- A [Groq API key](https://console.groq.com) (free tier available)
+- Node.js 18+ and npm/yarn
+- Git
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/ymanoj7745-lgtm/AI-Powered-Customer-Complaint-Management-System.git
-cd AI-Powered-Customer-Complaint-Management-System
+git clone https://github.com/ymanoj7745-lgtm/Intelligent-Data-Extraction-Platform.git
+cd Intelligent-Data-Extraction-Platform
 ```
 
-### 2. Backend setup
+### 2. Backend Setup
 
 ```bash
 cd backend
+
+# Create and activate a virtual environment
 python -m venv venv
 source venv/bin/activate      # On Windows: venv\Scripts\activate
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Run the backend server
+uvicorn server:app --reload --host 0.0.0.0 --port 8000
 ```
 
-Create a `.env` file inside `backend/`:
-
-```env
-DATABASE_URL=postgresql+asyncpg://<user>:<password>@<host>/<dbname>
-GROQ_API_KEY=your_groq_api_key_here
-```
-
-Run the API server:
-
-```bash
-uvicorn main:app --reload --port 8000
-```
-
-The API will be available at `http://localhost:8000`, with interactive docs at `http://localhost:8000/docs`.
-
-### 3. Frontend setup
+### 3. Frontend Setup
 
 ```bash
 cd ../frontend
+
+# Install dependencies
 npm install
-npm start
+
+# Run the development server
+npm run dev
 ```
 
-The dashboard will be available at `http://localhost:3000`.
+### 4. Configure Environment Variables
+
+```bash
+cp .env.example .env
+# Then edit .env with your configuration values
+```
+
+> 💡 **Tip:** See the [Environment Variables](#-environment-variables) section below for a full breakdown of required values.
 
 ---
 
@@ -249,189 +237,267 @@ The dashboard will be available at `http://localhost:3000`.
 
 | Variable | Description | Required |
 |---|---|---|
-| `DATABASE_URL` | Async PostgreSQL connection string (`postgresql+asyncpg://...`) | ✅ Yes |
-| `GROQ_API_KEY` | API key for Groq-hosted LLM inference | ✅ Yes |
+| `GROQ_API_KEY` | API key used to authenticate AI-assisted extraction/processing requests | ✅ Yes |
+| `JWT_SECRET` | Secret key used to sign and verify JWT authentication tokens | ✅ Yes |
+| `DATABASE_URL` | Connection string for the application's database | ✅ Yes |
+| `CORS_ORIGINS` | Comma-separated list of allowed origins for Cross-Origin Resource Sharing | ✅ Yes |
+| `LOG_LEVEL` | Logging verbosity (`DEBUG`, `INFO`, `WARNING`, `ERROR`) | ⬜ Optional |
 
-> ⚠️ **Security Callout:** Never commit `.env` files or API keys to version control.
+> ⚠️ **Security Callout:** Never commit `.env` files or secrets to version control. Use `.env.example` as a template only.
 
 ---
 
 ## 📖 API Documentation
 
-> Interactive API docs are auto-generated by FastAPI and available at `/docs` (Swagger UI) once the backend is running.
+> Interactive API docs are auto-generated by FastAPI and available at `/docs` (Swagger UI) and `/redoc` once the backend is running.
 
-### 📄 `POST /extract`
+### 🔑 `POST /login`
 
-Extract structured complaint data from raw text or an uploaded PDF.
+Authenticate a user and receive a JWT access token.
 
 **Request**
-```bash
-curl -X POST http://localhost:8000/extract \
-  -F "text=Batch #A102 of ProductX arrived with a cracked seal, received 2026-07-01."
+```json
+{
+  "email": "user@example.com",
+  "password": "your-password"
+}
 ```
 
 **Response**
 ```json
 {
-  "product_name": "ProductX",
-  "batch_number": "A102",
-  "complaint_type": "Packaging",
-  "severity": "Medium",
-  "description": "Cracked seal on arrival",
-  "received_date": "2026-07-01"
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "token_type": "bearer"
 }
 ```
 
 ---
 
-### 🚦 `POST /risk-assessment`
+### 🌐 `POST /extract`
 
-Run an AI risk assessment on a complaint.
+Submit a business website URL for extraction.
 
 **Request**
 ```json
 {
-  "product_name": "Acme UltraGlow Face Cream",
-  "batch_number": "84729X",
-  "complaint_type": "Product Quality",
-  "severity": "High",
-  "description": "The cream was completely separated and smelled rancid, causing a severe red rash and burning sensation when applied"
+  "url": "https://example-business.com",
+  "region": "US"
 }
 ```
 
 **Response**
 ```json
 {
-  "risk_level": "Critical",
-  "justification": "The complaint describes a severe adverse reaction associated with a product quality issue, indicating a potential serious health risk to consumers.",
-  "recommended_actions": [
-    "Immediately recall all units of the affected batch",
-    "Conduct a thorough investigation into the cause of the product quality issue",
-    "Perform additional testing to determine the extent of the problem",
-    "Notify regulatory authorities and report the incident",
-    "Provide medical assistance and compensation to the affected consumer"
+  "job_id": "job_2f9a1c",
+  "status": "queued",
+  "submitted_at": "2026-08-05T10:00:00Z"
+}
+```
+
+---
+
+### 📋 `GET /jobs`
+
+Retrieve a list of extraction jobs for the authenticated user.
+
+**Response**
+```json
+{
+  "jobs": [
+    {
+      "job_id": "job_2f9a1c",
+      "status": "completed",
+      "url": "https://example-business.com",
+      "created_at": "2026-08-05T10:00:00Z"
+    }
   ]
 }
 ```
 
 ---
 
-### 💾 `POST /complaints`
+### 🕓 `GET /history`
 
-Persist a complaint record to the database.
+Retrieve historical extraction records.
+
+**Response**
+```json
+{
+  "history": [
+    {
+      "job_id": "job_2f9a1c",
+      "company_name": "Example Business Inc.",
+      "extracted_at": "2026-08-05T10:05:32Z"
+    }
+  ]
+}
+```
+
+---
+
+### 👥 `GET /users`
+
+Retrieve platform users *(admin-scoped endpoint)*.
+
+**Response**
+```json
+{
+  "users": [
+    {
+      "id": "usr_001",
+      "email": "user@example.com",
+      "role": "admin"
+    }
+  ]
+}
+```
+
+---
+
+### 🕒 `POST /schedule`
+
+Create a scheduled/recurring extraction job.
 
 **Request**
 ```json
 {
-  "product_name": "Acme UltraGlow Face Cream",
-  "batch_number": "84729X",
-  "complaint_type": "Product Quality",
-  "severity": "High",
-  "description": "The cream was completely separated and smelled rancid, causing a severe red rash and burning sensation when applied",
-  "received_date": "2026-08-01"
+  "url": "https://example-business.com",
+  "frequency": "weekly",
+  "start_date": "2026-08-10"
 }
 ```
 
 **Response**
 ```json
 {
-  "id": 42,
-  "status": "saved",
-  "created_at": "2026-08-06T09:30:17Z"
+  "schedule_id": "sch_88a3",
+  "status": "active"
 }
 ```
 
-> 📌 Response fields illustrate the expected contract based on `schemas.py`. Verify exact field names against your local copy if it has diverged.
+> 📌 Request/response fields above illustrate the expected API contract. Exact schemas should be verified against your implementation.
 
 ---
 
-## 🔄 AI Agent Workflows
+## 🖥️ Frontend Pages
 
-Both AI features are modeled as **LangGraph `StateGraph`** pipelines rather than single prompt calls, so each step is inspectable and independently extensible.
+| Page | Description |
+|---|---|
+| **Login** | User authentication entry point; handles credential submission and token storage |
+| **Dashboard** | Central hub summarizing job activity, recent extractions, and quick actions |
+| **History** | Chronological log of completed extraction jobs and their results |
+| **Extraction** | Interface for submitting new URLs/business targets for extraction |
+| **Users** | Administrative view for managing platform users |
+| **Schedules** | Configure and manage recurring/scheduled extraction jobs |
+| **Job Details** | Deep-dive view into a specific job's status, logs, and extracted data |
+
+---
+
+## 🔄 Extraction Workflow
 
 ```mermaid
-flowchart LR
-    subgraph Extraction Agent
-        A1[Raw Text / PDF] --> A2[Parse Input]
-        A2 --> A3[LLM: Structured Extraction]
-        A3 --> A4[Validate Fields]
-        A4 --> A5[Return JSON]
-    end
-```
+flowchart TD
+    Start([User Submits URL]) --> Auth{JWT Valid?}
+    Auth -->|No| Reject[❌ 401 Unauthorized]
+    Auth -->|Yes| Queue[📥 Job Queued<br/>jobs.py]
+    Queue --> Scrape[🕸️ Scraper Engine<br/>scraper.py]
+    Scrape --> Parse[🧩 HTML Parsing<br/>BeautifulSoup]
+    Parse --> AI[🤖 AI-Assisted Extraction<br/>Structure Business Data]
+    AI --> Validate{Data Valid?}
+    Validate -->|No| Retry[🔁 Retry / Flag Job]
+    Validate -->|Yes| Store[💾 Store Structured Result]
+    Store --> Export[📤 Export Engine<br/>Excel / JSON]
+    Export --> Notify[✅ Job Marked Complete]
+    Retry --> Scrape
 
-```mermaid
-flowchart LR
-    subgraph Risk Assessment Agent
-        B1[Complaint Record] --> B2[Build Risk Prompt]
-        B2 --> B3[LLM: Risk Evaluation]
-        B3 --> B4[Parse Risk Level + Actions]
-        B4 --> B5[Return Assessment]
-    end
+    style Start fill:#3B82F6,color:#fff
+    style Reject fill:#EF4444,color:#fff
+    style Notify fill:#10B981,color:#fff
+    style AI fill:#EC4899,color:#fff
 ```
 
 ---
 
 ## 🔒 Security
 
-- **Environment-based secrets** — `DATABASE_URL` and `GROQ_API_KEY` are read from environment variables, never hardcoded.
-- **Input validation** — Request payloads are validated via FastAPI's Pydantic schemas (`schemas.py`) to reject malformed input.
-- **Async DB access** — Non-blocking SQLAlchemy sessions reduce the risk of connection exhaustion under load.
+- **JWT Authentication** — All protected endpoints require a valid signed JWT, verified via `auth.py`.
+- **Environment Variables** — Secrets (API keys, DB credentials, JWT signing keys) are managed via environment variables and never hardcoded.
+- **Authentication Middleware** — Requests are validated before reaching business logic layers.
+- **Input Validation** — Request payloads are validated via FastAPI's Pydantic models to reject malformed input.
+- **CORS Configuration** — Cross-origin access is explicitly controlled via the `CORS_ORIGINS` environment variable.
 
-> 🛡️ **Security Callout:** This project currently has no authentication layer on its API routes. Before any production or multi-user deployment, add authentication (e.g. JWT), rate limiting, and CORS restrictions.
+> 🛡️ **Security Callout:** This section describes architectural intent based on the project structure. Conduct a full security review (rate limiting, dependency scanning, secrets rotation) before production deployment.
 
 ---
 
 ## ⚡ Performance
 
-- **FastAPI Async Support** — Non-blocking I/O for both database access and LLM calls.
-- **Groq Inference** — Groq's LPU-based hosting gives low-latency structured JSON generation compared to typical GPU-hosted inference.
-- **Stateless Agents** — Each LangGraph run is independent, so extraction and risk-assessment requests can be scaled horizontally behind the FastAPI app.
+- **FastAPI Async Support** — Leverages FastAPI's native `async`/`await` support for non-blocking I/O during scraping and API calls.
+- **Efficient Scraping** — Targeted HTML parsing via BeautifulSoup minimizes unnecessary processing overhead.
+- **Background Jobs** — Extraction jobs are designed to run independently of the request/response cycle via the job management layer (`jobs.py`).
+- **Optimized Frontend** — React component structure with Tailwind CSS for a lightweight, fast-rendering UI.
+- **Caching** — *Customize for your implementation — no caching layer is currently defined in the project structure.*
+
+---
+
+## 🗺️ Future Roadmap
+
+- [ ] AI-powered content summarization
+- [ ] OCR support for scanned/image-based business documents
+- [ ] Multi-language extraction support
+- [ ] Docker containerization
+- [ ] Kubernetes deployment manifests
+- [ ] PostgreSQL as primary production datastore
+- [ ] Redis caching layer
+- [ ] Celery for distributed background task processing
+- [ ] Webhook support for job completion events
+- [ ] REST API versioning (`/api/v1`, `/api/v2`)
 
 ---
 
 ## 🖼️ Screenshots
 
-**Dashboard — AI Document Extraction, Complaint Logging & AI Copilot**
+> 📸 Screenshots below are placeholders. Replace with actual application screenshots.
 
-![Dashboard Screenshot](./docs/screenshots/dashboard.png)
+| Dashboard | Extraction |
+|---|---|
+| `![Dashboard Screenshot](./docs/screenshots/dashboard.png)` | `![Extraction Screenshot](./docs/screenshots/extraction.png)` |
 
-The dashboard combines three panels: drag-and-drop AI document extraction (top-left), the editable complaint form pre-filled from extracted data (bottom-left), and the AI Copilot risk assessment panel (right), which returns a risk level, justification, and recommended actions in real time.
+| History | Users |
+|---|---|
+| `![History Screenshot](./docs/screenshots/history.png)` | `![Users Screenshot](./docs/screenshots/users.png)` |
 
----
-
-## 🗺️ Roadmap
-
-- [ ] Root-cause analysis agent (extend the LangGraph risk pipeline)
-- [ ] Automated CAPA (Corrective and Preventive Action) suggestion node
-- [ ] Authentication & role-based access (QA reviewer vs. submitter)
-- [ ] Complaint analytics dashboard (trends by product/severity/type)
-- [ ] Dockerized deployment (backend + frontend + Postgres via Compose)
-- [ ] REST API versioning (`/api/v1`)
-- [ ] Export complaints & risk reports to PDF/Excel
+| Login |
+|---|
+| `![Login Screenshot](./docs/screenshots/login.png)` |
 
 ---
 
 ## ☁️ Deployment
 
-### Backend
+### Backend Deployment
 
 ```bash
+# Example: production run with Uvicorn/Gunicorn
 pip install -r requirements.txt
-gunicorn main:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
+gunicorn server:app -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:8000
 ```
 
-### Frontend
+### Frontend Deployment
 
 ```bash
 npm run build
-# Serve the /build output via your static hosting provider of choice
+# Serve the /dist or /build output via your static hosting provider of choice
 ```
 
-### Production considerations
+### Environment Variables in Production
 
-- Set `DATABASE_URL` and `GROQ_API_KEY` via your hosting provider's secret manager — never in build artifacts.
-- Add an authentication layer and CORS restrictions before exposing the API publicly.
-- Use a managed Postgres provider (e.g. Neon, Supabase, RDS) for production data durability.
+- Set all required variables (see [Environment Variables](#-environment-variables)) in your hosting provider's secret/config management system.
+- Never expose `.env` files in production build artifacts.
+
+### Production Considerations
+
+> *Customize for your implementation* — specific hosting provider (Render, Railway, AWS, GCP, Azure, etc.), reverse proxy, and CI/CD configuration depend on deployment target.
 
 ---
 
@@ -439,16 +505,22 @@ npm run build
 
 ### Coding Standards
 
-- Follow **PEP 8** for backend Python code.
-- Keep route handlers thin — extraction/risk logic belongs in `workflows/`, not `main.py`.
-- Use consistent component and slice naming in the React frontend.
+- Follow **PEP 8** for Python backend code.
+- Use consistent component naming and folder structure in the React frontend.
+- Keep API route handlers thin — business logic belongs in dedicated modules (`scraper.py`, `jobs.py`, etc.).
+
+### Folder Structure Conventions
+
+- Backend modules are organized by responsibility (auth, scraping, jobs, export).
+- Frontend pages are organized by feature/route under `src/pages/`.
 
 ### Contribution Workflow
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/your-feature-name`)
-3. Commit with clear, descriptive messages
-4. Push to your fork and open a Pull Request describing **what** changed and **why**
+3. Commit your changes with clear, descriptive messages
+4. Push to your fork and open a Pull Request
+5. Ensure your PR describes **what** changed and **why**
 
 ### Git Branching Strategy
 
@@ -468,7 +540,7 @@ This project is licensed under the **MIT License**.
 ```
 MIT License
 
-Copyright (c) 2026 Manoj Yadav
+Copyright (c) 2026 [Your Name / Organization]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -492,7 +564,7 @@ See the [LICENSE](./LICENSE) file for full details.
 
 <div align="center">
 
-**Manoj Yadav**
+**Manoj Y**
 
 AI/ML Engineer
 
@@ -506,12 +578,14 @@ AI/ML Engineer
 
 ## 🙏 Acknowledgements
 
-- [**FastAPI**](https://fastapi.tiangolo.com/) — high-performance async Python web framework
-- [**LangGraph**](https://langchain-ai.github.io/langgraph/) — explicit, stateful agent orchestration
-- [**Groq**](https://groq.com/) — low-latency LLM inference (Llama 3.3 70B)
-- [**React**](https://react.dev/) — component-driven frontend architecture
-- [**SQLAlchemy**](https://www.sqlalchemy.org/) — async ORM for PostgreSQL
-- The broader **open-source community**
+This project is built on the shoulders of excellent open-source technology:
+
+- [**FastAPI**](https://fastapi.tiangolo.com/) — for a modern, high-performance Python web framework
+- [**React**](https://react.dev/) — for a powerful, component-driven frontend architecture
+- [**Tailwind CSS**](https://tailwindcss.com/) — for fast, utility-first styling
+- [**BeautifulSoup**](https://www.crummy.com/software/BeautifulSoup/) — for reliable HTML parsing
+- [**Python**](https://www.python.org/) — the backbone of the backend and data processing pipeline
+- The broader **open-source community**, whose tools and libraries make projects like this possible
 
 ---
 
